@@ -40,7 +40,7 @@ const questions = ref([
 
   {
     questions: 'What is load balancing?',
-    answer: 1,
+    answer: 3,
     options: [
       'Load balancing is not distribution of all the incoming network traffic all across the backend servers.',
       'Load balancing is distribution of all the outgoing network traffic all across the backend servers.',
@@ -64,7 +64,7 @@ const questions = ref([
 
   {
     questions: 'What does NPM stand for?',
-    answer: 2,
+    answer: 1,
     options: [
       'Node Package Module',
       'Node Package Manager',
@@ -121,7 +121,6 @@ const nextQuestion = () => {
     <section class="quiz-wrapper" v-if="!quizCompleted">
       <div class="quiz-info">
         <span class="question"> {{ getCurrentQuestions.questions }} </span>
-        <span class="score">Score: {{ score }}/{{ questions.length }}</span>
       </div>
 
       <div class="options">
@@ -167,7 +166,7 @@ const nextQuestion = () => {
 
     <section v-else>
       <h2>You have completed this assessment</h2>
-      <h3>Your Score: {{ (score / questions.length) * 100 }} %</h3>
+      <h3>Your Score: {{ Math.round((score / questions.length) * 100) }} %</h3>
     </section>
   </main>
 </template>
@@ -183,5 +182,98 @@ const nextQuestion = () => {
 
 body {
   background-color: #cecece;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-wrapper {
+  background-color: #669933;
+  padding: 1rem;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 0.5rem;
+}
+
+.quiz-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.quiz-info .question {
+  color: #090909;
+  font-size: 1.5rem;
+}
+
+.options {
+  margin-bottom: 1rem;
+}
+
+.option {
+  padding: 1rem;
+  display: block;
+  color: #333;
+  background-color: #fff;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #e6e6e6;
+}
+
+.option.correct {
+  background-color: #00cc00;
+}
+
+.option.incorrect {
+  background-color: #ff0000;
+}
+
+.option:last-of-type {
+  margin-bottom: 0;
+}
+
+.option.disabled {
+  opacity: 0.5;
+}
+
+.option.input {
+  display: none;
+}
+
+button {
+  appearance: none;
+  outline: none;
+  border: none;
+  padding: 1rem 2rem;
+  margin-left: 12rem;
+  background-color: aqua;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+h3 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 </style>

@@ -116,7 +116,54 @@ const nextQuestion = () => {
 
 <template>
   <main class="app">
-    <h1></h1>
+    <h1>Test Your Frontend Skills</h1>
+
+    <section class="quiz-wrapper">
+      <div class="quiz-info">
+        <span class="question"> {{ getCurrentQuestions.questions }} </span>
+        <span class="score">Score: {{ score }}/{{ questions.length }}</span>
+      </div>
+
+      <div class="options">
+        <label
+          v-for="(option, index) in getCurrentQuestions.options"
+          :key="index"
+          :class="`option ${
+            getCurrentQuestions.selected == index
+              ? index == getCurrentQuestions.answer
+                ? 'correct'
+                : 'incorrect'
+              : ''
+          }${
+            getCurrentQuestions.selected != null &&
+            index != getCurrentQuestions.answer
+              ? 'disabled'
+              : ''
+          }`"
+        >
+          <input
+            type="radio"
+            :name="getCurrentQuestions.index"
+            :value="index"
+            v-model="getCurrentQuestions.selected"
+            :disabled="getCurrentQuestions.selected"
+            @change="setAnswer"
+          />
+
+          <span>{{ option }}</span>
+        </label>
+      </div>
+
+      <button @click="nextQuestion" :disabled="!getCurrentQuestions.selected">
+        {{
+          getCurrentQuestions.index == questions.length - 1
+            ? 'Submit'
+            : getCurrentQuestions.selected == null
+            ? 'Select an option'
+            : 'Next Question'
+        }}
+      </button>
+    </section>
   </main>
 </template>
 

@@ -135,7 +135,7 @@ const nextQuestion = () => {
               : ''
           }${
             getCurrentQuestions.selected != null &&
-            index != getCurrentQuestions.answer
+            index != getCurrentQuestions.selected
               ? 'disabled'
               : ''
           }`"
@@ -239,7 +239,7 @@ h1 {
 }
 
 .option.incorrect {
-  background-color: #ff0000;
+  background-color: #ed1c24;
 }
 
 .option:last-of-type {

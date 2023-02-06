@@ -118,7 +118,7 @@ const nextQuestion = () => {
   <main class="app">
     <h1>Test Your Frontend Skills</h1>
 
-    <section class="quiz-wrapper">
+    <section class="quiz-wrapper" v-if="!quizCompleted">
       <div class="quiz-info">
         <span class="question"> {{ getCurrentQuestions.questions }} </span>
         <span class="score">Score: {{ score }}/{{ questions.length }}</span>
@@ -163,6 +163,11 @@ const nextQuestion = () => {
             : 'Next Question'
         }}
       </button>
+    </section>
+
+    <section v-else>
+      <h2>You have completed this assessment</h2>
+      <h3>Your Score: {{ (score / questions.length) * 100 }} %</h3>
     </section>
   </main>
 </template>

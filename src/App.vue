@@ -128,7 +128,7 @@ const nextQuestion = () => {
           v-for="(option, index) in getCurrentQuestions.options"
           :key="index"
           :class="`option ${
-            getCurrentQuestions.answer == index
+            getCurrentQuestions.selected == index
               ? index == getCurrentQuestions.answer
                 ? 'correct'
                 : 'incorrect'
